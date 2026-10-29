@@ -20,3 +20,7 @@ make web
 
 # JIT
 This project contains an attempt at a JS->WASM JIT. It is currently not usable on many websites. It can be toggled with the environment variable `GECKO_NOWASMJIT=1`
+
+## Japanese fonts and web deployment
+
+The `chrome-assets` bundle includes Noto Sans JP for Japanese glyph coverage. See [Web deployment guide](docs/WEB_DEPLOYMENT.md) for building, hosting requirements (including the WISP WebSocket proxy), and a Japanese rendering smoke test.
