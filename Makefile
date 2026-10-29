@@ -234,10 +234,14 @@ chrome-assets:
 	trap 'rm -rf "$$stage" "$$tarfile" "$(CHROME_ARCHIVE).tmp"' EXIT; \
 	rsync -aL $(patsubst %,--exclude=%,$(CHROME_EXCLUDES)) "$(CHROME_GRE_SRC)/" "$$stage/"; \
 	for dest in fonts browser/fonts; do \
-	  mkdir -p "$$stage/$$dest"; \
-	  cp "$(CHROME_FONT_SRC)"/*.ttf "$$stage/$$dest/"; \
+	  mkdir -p "$stage/$dest"; \
+	  cp "$(CHROME_FONT_SRC)"/*.ttf "$stage/$dest/"; \
 	done; \
-	tar -cf "$$tarfile" -C "$$stage" .; \
+	curl -fL --retry 3 --connect-timeout 20 \
+	  "https://raw.githubusercontent.com/google/fonts/main/ofl/notosansjp/NotoSansJP%5Bwght%5D.ttf" \
+	  -o "$stage/fonts/NotoSansJP-VF.ttf"; \
+	cp "$stage/fonts/NotoSansJP-VF.ttf" "$stage/browser/fonts/NotoSansJP-VF.ttf"; \
+	tar -cf "$tarfile" -C "$stage" .; \
 	size=$$(stat -c%s "$$tarfile"); \
 	mkdir -p "$(CHROME_PUBLIC)"; \
 	zstd -q -f -19 "$$tarfile" -o "$(CHROME_ARCHIVE).tmp"; \
