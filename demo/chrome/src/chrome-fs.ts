@@ -30,6 +30,7 @@ const MANIFEST_URL = new URL('chrome-assets.json', location.href).href;
 // OPFS path for the persistent profile (gecko.js `profile` option).
 export const PROFILE_OPFS_PATH = 'profile';
 const REQUIRED_FILES = [
+  'fonts/NotoSansJP-VF.ttf',
   'fonts/LiberationSans-Regular.ttf',
   'browser/fonts/LiberationSans-Regular.ttf',
   'browser/chrome.manifest',
