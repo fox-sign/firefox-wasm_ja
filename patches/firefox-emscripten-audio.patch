@@ -1,8 +1,7 @@
 diff --git a/toolkit/moz.configure b/toolkit/moz.configure
-index 0000000..0000000 100644
 --- a/toolkit/moz.configure
 +++ b/toolkit/moz.configure
-@@ -316,6 +316,9 @@ def audio_backends_default(target):
+@@ -280,6 +280,10 @@ def audio_backends_default(target):
      elif target.os == "WINNT":
          return ("wasapi",)
 +    elif target.os == "EMSCRIPTEN":
