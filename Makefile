@@ -110,7 +110,8 @@ firefox/.git:
 	git -C firefox remote add origin $(FIREFOX_URL) 2>/dev/null || true
 	git -C firefox fetch --depth 1 origin $(FIREFOX_REF)
 	git -C firefox checkout -q --detach FETCH_HEAD
-	@echo ">> firefox at $$(git -C firefox rev-parse --short HEAD)"
+	git -C firefox apply ../patches/firefox-emscripten-audio.patch
+	@echo ">> firefox at $(git -C firefox rev-parse --short HEAD) (Emscripten audio patch applied)"
 
 vendor: firefox
 	python3 vendor-std-deps.py
